@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+</head>
+
+
+
+</html>
+
+
+
+
+
+<body class="bg-info">
+
+
+
+
+
+    <div id="login">
+        <h3 class="text-center text-white pt-5">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form">
+
+                            <div class="form-group">
+                                <label for="username" class="text-white">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control" >
+                                 
+                                 
+                            
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-white">Password:</label><br>
+                                <input type="text" name="password" id="password" class="form-control" >
+                                
+                                
+                            
+                            </div>
+                            <div id="error" style="display: none;">
+                                <p>Invalid username or password</p>
+                            </div>
+                            <div class="form-group">
+
+                                <label for="remember-me" class="text-white"><span>Remember me</span> <span><input
+                                            id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                <button type="submit" name="submit" class="btn btn-light btn-md">Login</button>
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a href="#" class="text-info"></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#login-form').submit((e) => {
+            e.preventDefault()
+            let username = $('#username').val()
+            let password = $('#password').val()
+            
+            
+            $.ajax({
+                url: '/login',
+                method: "post",
+                data: {
+                    username,
+                    password
+                },
+                success: (response) => {
+                    if (response.status) {
+                        window.location.assign('/login')
+                    }else if(username==""){
+                        console.log("")
+                    }else if(password==""){
+                        console.log("")
+                    }
+                     else {
+                        $('#error').show()
+                    }
+                }
+            })
+        })
+
+    </script>
+  
+<script>
+    $(document).ready(function(){
+  $('#login-form').validate({
+            rules:{
+         username:{
+             required:true,
+             minlength:4
+         },
+         password:{
+             required:true,
+             minlength:5
+         }
+
+ }
+})
+    })
+    </script>
+</body>

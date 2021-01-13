@@ -1,0 +1,28 @@
+<section>
+  <nav class="navbar navbar-expand-lg navbar-light bg-wight">
+    <a class="navbar-brand" href="#">Home</a>
+            <div class="mr-auto"></div>
+            <div>
+            <a href="/logout" style="float: right;">
+              <button class="btn btn-primary mr-auto" style="float:right">Logout</button>
+            </a>
+            </div>
+  </nav>
+</section>
+<div class="container">
+  <div class="row">
+    {{#each product}}
+    <div class="col-12 col-md-4 mt-3 mb-3">
+      <div class="card text-center mx-auto" style="width:280px">
+        <img class="card-img-top mt-2 d-flex justify-content-center mx-auto" style="height: 300px; width:200px;"
+          src="{{this.image}}">
+        <div class="card-body">
+          <h5 class="card-title text-center pt-3">{{this.name}}</h5>
+          <p class="text-center">{{this.desc}}</p>
+          <p class="card-text text-center"><button class="btn btn-primary">Add to Cart</button></p>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
