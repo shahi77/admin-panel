@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,90 +17,89 @@
 
 
 
-<body class="bg-info">
+<body class="bg-secondary">
 
 
 
 
 
-    <div id="login">
+    <div id="login" class="mt-5">
         <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form">
+                        <form id="login-form" class="form-control" action="/login" method="POST" autocomplete="on">
 
                             <div class="form-group">
-                                <label for="username" class="text-white">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control" >
+                                <label for="username" class="text-dark">Email:</label><br>
+                                <input type="email" name="email" id="email" class="form-control" >
                                  
-                                 
-                            
+                            </div>
+
+                            <div id="" style="display: none;">
+                                <p>Invalid email</p>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-white">Password:</label><br>
+                                <label for="password" class="text-dark">Password:</label><br>
                                 <input type="text" name="password" id="password" class="form-control" >
-                                
-                                
+                               
                             
                             </div>
-                            <div id="error" style="display: none;">
-                                <p>Invalid username or password</p>
+                            <div id="pass" style="display: none;">
+                                <p>Invalid  password</p>
                             </div>
                             <div class="form-group">
 
-                                <label for="remember-me" class="text-white"><span>Remember me</span> <span><input
+                                <label for="remember-me" class="text-dark"><span>Remember me</span> <span><input
                                             id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <button type="submit" name="submit" class="btn btn-light btn-md">Login</button>
+                                <button type="submit" name="submit" class="btn btn-success btn-md">Login</button>
+                                <p>Create an account ?<a href="/signup">Sign in</a></p>
                             </div>
                             <div id="register-link" class="text-right">
-                                <a href="#" class="text-info"></a>
+                                
                             </div>
                         </form>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        $('#login-form').submit((e) => {
+     /* $('#login-form').submit((e) => {
             e.preventDefault()
-            let username = $('#username').val()
+            let email = $('#email').val()
             let password = $('#password').val()
-            
-            
             $.ajax({
-                url: '/login',
+                url: "/login",
                 method: "post",
                 data: {
-                    username,
+                    email,
                     password
                 },
                 success: (response) => {
-                    if (response.status) {
-                        window.location.assign('/login')
-                    }else if(username==""){
-                        console.log("")
-                    }else if(password==""){
-                        console.log("")
+                    if (response.s == 0) {
+                        location.href = '/home'
+                    } else if (response.s == 1) {
+                        $('#pass').show()
+                        $('#user').hide()
                     }
-                     else {
-                        $('#error').show()
+                    else {
+                        $('#user').show()
                     }
                 }
             })
-        })
-
+        }) --}}
     </script>
   
 <script>
     $(document).ready(function(){
   $('#login-form').validate({
             rules:{
-         username:{
+         email:{
              required:true,
-             minlength:4
+             
          },
          password:{
              required:true,
@@ -112,3 +111,4 @@
     })
     </script>
 </body>
+

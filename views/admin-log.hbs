@@ -1,0 +1,99 @@
+<body style="background-color: cadetblue;">
+
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    </head>
+
+    <div id="login" class="mt-5">
+        <h3 class="text-center text-white pt-5">Admin form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="admin-form" class="form-control" action="/admin-login" method="POST">
+
+                            <div class="form-group">
+                                <label for="email" class="text-dark">Email:</label><br>
+                                <input type="email" name="email" id="email" class="form-control">
+
+
+
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-dark">Password:</label><br>
+                                <input type="text" name="password" id="password" class="form-control">
+
+
+
+                            </div>
+                            <div id="error" style="display: none;">
+                                <p>Invalid email or password</p>
+                            </div>
+                            <div class="form-group">
+
+                                <label for="remember-me" class="text-dark"><span>Remember me</span> <span><input
+                                            id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                <button type="submit" class="btn btn-success btn-md">Login</button>
+
+                            </div>
+                            <div id="register-link" class="text-right">
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script>
+        $('#admin-form').submit((e) => {
+            console.log('***********************************')
+            e.preventDefault()
+            let email = $('#email').val()
+            let password = $('#password').val()
+
+
+            $.ajax({
+
+                url: '/admin-login',
+                method: "post",
+                data: {
+                    email,
+                    password
+                },
+                success: (response) => {
+                    if (response.status) {
+                        
+                        window.location.assign('/admin')
+                    
+                     else {
+                        $('#error').show()
+
+                    }
+                }
+            })
+
+
+    </script> 
+
+    <script>
+              $(document).ready(function () {
+                  $('#admin-form').validate({
+                      rules: {
+
+                          email: {
+                              required: true
+                          },
+                          password: {
+                              required: true
+
+                          }
+
+                      }
+                  })
+              })
+    </script>
+
+</body>

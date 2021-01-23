@@ -6,16 +6,21 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "express-session": "^1.17.1",
     "fastest-validator": "^1.9.0",
+    "file": "^0.2.2",
     "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
+    "mongodb": "^3.6.3",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "upload": "^1.1.1"
   },
   "main": "app.js",
   "devDependencies": {},

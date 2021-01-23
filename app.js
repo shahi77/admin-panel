@@ -6,10 +6,12 @@ var logger = require('morgan');
 var fasterValidator = require('fastest-validator')
 var bodyParser = require('body-parser')
 var session=require('express-session')
+var db=require('./public/javascripts/mongo')
+// var fileUpload=require('express-fileuplaod')
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var AdminRouter = require('./routes/Admin');
+var UsersRouter = require('./routes/Users');
 
 var app = express();
 
@@ -24,17 +26,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
-app.use(session({secret: 'key',cookie:{maxAge:60000000}}));
+// app.use(fileUpload())
+app.use(session({secret: 'key',cookie:{maxAge:60000}}));
 app.use(function(req, res, next) {
   res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   next();
 })
 
 
+db.connect((err)=>{
+  if(err)
+console.log('conction faild',+err)
+else console.log('database conncted');
+})
 
-
-app.use('/', indexRouter);
-app.use('/', usersRouter);
+app.use('/', AdminRouter);
+app.use('/', UsersRouter);
 
 
 // catch 404 and forward to error handler

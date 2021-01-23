@@ -1,0 +1,73 @@
+<section>
+    
+<nav class="navbar navbar-expand-lg navbar-light bg-warning pb-5">
+    <a class="navbar-brand" href="#">Admin Panel</a>
+    {{!-- <input type="text"><br>
+     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
+{{!--      
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+             <div class="mr-auto"></div>
+           
+            <div> --}}
+             
+            <a href="/admin-logout" style="float: right;">
+              <button class="btn btn-dark mr-auto" style="float:right">Logout</button>
+            </a>
+            </div>
+  </nav>
+  
+</section>
+<section>
+
+
+
+ {{!-- <div class="container">
+    <div class="row mt-5">
+        <a href="'/addproduct" class="btn btn-success ml-auto">Add Product</a> --}}
+        
+    <table class="table" id="myTable">
+      <div class="container">
+  <thead>
+      <div class="col-12 col-md-4 mt-3 mb">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">Option</th>
+      
+      
+    </tr>
+    </div>
+  </thead>
+  <tbody>
+     
+      <div class="col-12 col-md-4 mt-3 mb-3">
+     {{#each details}}
+    <tr>
+      
+    
+      <td scope="col">{{this.name}}</td>
+      <td scope="col">{{this.email}}</td>
+      <td scope="col">{{this.password}}</td>
+      <td>
+        <a href="/edit/{{this._id}}" class="btn btn-primary">Edit</a>
+      <a href="/delete/{{this._id}}" class="btn btn-danger">Delete</a></td>
+      
+    </tr>
+    {{/each}}
+    </div>
+    </div>
+  </tbody>
+</table>
+</div>
+</div>
+ </section> 
+
+
+
+ <script>
+   $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+ </script>
