@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 </head>
 
 
@@ -20,34 +20,31 @@
 <body class="bg-secondary">
 
 
-
-
-
     <div id="login" class="mt-5">
         <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form-control" action="/login" method="POST" autocomplete="on">
+                        <form id="login-form" class="form-control" autocomplete="on">
 
                             <div class="form-group">
                                 <label for="username" class="text-dark">Email:</label><br>
-                                <input type="email" name="email" id="email" class="form-control" >
-                                 
+                                <input type="email" name="email" id="email" class="form-control">
+
                             </div>
 
-                            <div id="" style="display: none;">
+                            <div id="user" style="display: none;">
                                 <p>Invalid email</p>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-dark">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control" >
-                               
-                            
+                                <input type="text" name="password" id="password" class="form-control">
+
+
                             </div>
                             <div id="pass" style="display: none;">
-                                <p>Invalid  password</p>
+                                <p>Invalid password</p>
                             </div>
                             <div class="form-group">
 
@@ -57,18 +54,20 @@
                                 <p>Create an account ?<a href="/signup">Sign in</a></p>
                             </div>
                             <div id="register-link" class="text-right">
-                                
+
                             </div>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-     /* $('#login-form').submit((e) => {
+        $('#login-form').submit((e) => {
+            console.log('*******')
             e.preventDefault()
+
             let email = $('#email').val()
             let password = $('#password').val()
             $.ajax({
@@ -79,9 +78,9 @@
                     password
                 },
                 success: (response) => {
-                    if (response.s == 0) {
-                        location.href = '/home'
-                    } else if (response.s == 1) {
+                    if (response.status == true) {
+                        window.location.href = 'home'
+                    } else if (response.status == 0) {
                         $('#pass').show()
                         $('#user').hide()
                     }
@@ -90,25 +89,24 @@
                     }
                 }
             })
-        }) --}}
+        })
     </script>
-  
-<script>
-    $(document).ready(function(){
-  $('#login-form').validate({
-            rules:{
-         email:{
-             required:true,
-             
-         },
-         password:{
-             required:true,
-             minlength:5
-         }
 
- }
-})
-    })
+    <script>
+        $(document).ready(function () {
+            $('#login-form').validate({
+                rules: {
+                    email: {
+                        required: true,
+
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    }
+
+                }
+            })
+        })
     </script>
 </body>
-

@@ -67,6 +67,7 @@ if(user){
             response.user=user
             response.status=true
             resolve(response)
+            console.log('**',response);
         }else{
             console.log('login failed');
             resolve({status:false})

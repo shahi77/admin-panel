@@ -4,17 +4,18 @@ const { render, response } = require('../app');
 var router = express.Router();
 var usersHelpers=require('../public/javascripts/users-helpers')
 
- /* GET home page. */
-//  router.get('/', function (req, res) {
-//    let user = req.session.user
-//   if (user) {     res.render('home',{username:user,product})
-//    } else {
+ 
+ router.get('/home', function (req, res) {
+   let user = req.session.user
+  if (user) { 
+    res.render('home',{username:user,product})
+   } else {
     
-//      res.render('index');
-//    }
+     res.render('login-form');
+   }
   
   
-// });
+});
 let product= [
   {
       name:'Apple iphone XR',
@@ -80,12 +81,15 @@ let product= [
 // });
 
 
+
+
 router.get('/',(req,res)=>{
   if(req.session.loggedIn){
       res.render('home',{product})
+    
       }else
       
-         res.render('index')
+         res.render('login-form')
    
 // res.render('index')
   
@@ -116,23 +120,25 @@ router.post('/user-signup',(req,res)=>{
   console.log(req.body);
   usersHelpers.doSignup(req.body).then((response)=>{
     console.log(response);
-    res.render('index')
+    res.render('login-form')
   })
   })
 
 
 
   router.post('/login',(req,res)=>{
+    
     usersHelpers.doLogin(req.body).then((response)=>{
       
 if(response.status){
-  
+  console.log('qwerty');
   req.session.loggedIn=true
   req.session.user=response.user
-  
+  res.json({status:true})
+
   res.render('home',{product})
 }else{
-  
+  res.json({status:false})
   res.redirect('/')  
   
 }
