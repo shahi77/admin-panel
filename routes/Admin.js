@@ -74,7 +74,7 @@ router.get('/admin', function (req, res) {
 
 router.get('/admin-logout', (req, res) => {
   console.log("SESSION0",req.session);
-    req.session.destroy()
+    req.session.admin=null
   res.redirect('/admin')
 })
 

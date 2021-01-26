@@ -80,11 +80,17 @@ let product= [
 //   }
 // });
 
-
+const veryfylogin=(req,res,next)=>{
+  if(req.session.user.loggedIn){
+next()
+  }else{
+    res.redirect('/')
+  }
+}
 
 
 router.get('/',(req,res)=>{
-  if(req.session.loggedIn){
+  if(req.session.user){
       res.render('home',{product})
     
       }else
@@ -107,7 +113,7 @@ router.get('/',(req,res)=>{
 
 
 router.get('/logout-user',(req,res)=>{
-req.session.destroy()
+req.session.user=null
 res.redirect('/')
 })
 
@@ -132,12 +138,14 @@ router.post('/user-signup',(req,res)=>{
       
 if(response.status){
   console.log('qwerty');
-  req.session.loggedIn=true
   req.session.user=response.user
+  req.session.loggedIn=true
+ 
   res.json({status:true})
 
   res.render('home',{product})
 }else{
+  
   res.json({status:false})
   res.redirect('/')  
   
